@@ -13,4 +13,6 @@ Console.WriteLine("Hello, World!");
 AdoDotNetExaple adoDotNetExaple = new AdoDotNetExaple();
 //adoDotNetExaple.Read();
 //adoDotNetExaple.Create("Funny", "Mr.Bean", "Merry Cherist");
-adoDotNetExaple.Update(1102, "Thingyan", "Test Auhtour", "Thingyan Festival");
+//adoDotNetExaple.Update(1002, "Thingyan", "Test Auhtour", "Thingyan Festival");
+//adoDotNetExaple.Delete(1002);
+adoDotNetExaple.Edit(1002);
