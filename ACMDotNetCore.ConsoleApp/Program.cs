@@ -16,6 +16,9 @@ Console.WriteLine("Hello, World!");
 //adoDotNetExaple.Update(1002, "Thingyan", "Test Auhtour", "Thingyan Festival");
 //adoDotNetExaple.Delete(1002);
 //adoDotNetExaple.Edit(1002);
-DapperExample dapperExample = new DapperExample();
-dapperExample.Run();
+//Dapper
+//DapperExample dapperExample = new DapperExample();
+//dapperExample.Run();
+EFCore_Example EFCore=new EFCore_Example();
+EFCore.Run();
 Console.ReadLine();
