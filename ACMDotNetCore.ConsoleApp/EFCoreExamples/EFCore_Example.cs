@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal;
+﻿using ACMDotNetCore.ConsoleApp.Dto;
+using Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal;
 using Microsoft.IdentityModel.Tokens;
 using System;
 using System.Collections.Generic;
@@ -6,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ACMDotNetCore.ConsoleApp
+namespace ACMDotNetCore.ConsoleApp.EFCoreExamples
 {
     internal class EFCore_Example
     {
@@ -23,7 +24,7 @@ namespace ACMDotNetCore.ConsoleApp
         }
         private void Read()
         {
-            
+
             var lst = db.Blogs.ToList();
             foreach (BlogDto items in lst)
             {
@@ -33,12 +34,12 @@ namespace ACMDotNetCore.ConsoleApp
                 Console.WriteLine(items.BlogContent);
                 Console.WriteLine("---------------------------------------");
             }
-            
+
         }
         private void Edit(int id)
         {
-            var items =db.Blogs.FirstOrDefault(x => x.BlogId == id);
-            if(items is null)
+            var items = db.Blogs.FirstOrDefault(x => x.BlogId == id);
+            if (items is null)
             {
                 Console.WriteLine("Data is not found");
                 return;
@@ -49,7 +50,7 @@ namespace ACMDotNetCore.ConsoleApp
             Console.WriteLine(items.BlogContent);
             Console.WriteLine("");
         }
-        private void Create(string title,string author,string content)
+        private void Create(string title, string author, string content)
         {
             var item = new BlogDto
             {
@@ -63,7 +64,7 @@ namespace ACMDotNetCore.ConsoleApp
             Console.WriteLine(message);
 
         }
-        private void Update(int id,string title, string author, string content) 
+        private void Update(int id, string title, string author, string content)
         {
             var items = db.Blogs.FirstOrDefault(x => x.BlogId == id);
             if (items is null)
@@ -73,7 +74,7 @@ namespace ACMDotNetCore.ConsoleApp
             }
             items.BlogTitle = title;
             items.BlogAuthor = author;
-            items.BlogContent = content; 
+            items.BlogContent = content;
             int result = db.SaveChanges();
             string message = result > 0 ? "Successful Update" : " Update Fail";
             Console.WriteLine(message);

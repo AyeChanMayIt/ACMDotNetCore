@@ -1,5 +1,4 @@
-﻿
-using ACMDotNetCore.ConsoleApp;
+﻿using ACMDotNetCore.ConsoleApp.EFCoreExamples;
 using System.Data;
 using System.Data.SqlClient;
 

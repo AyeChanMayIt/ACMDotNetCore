@@ -5,17 +5,17 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ACMDotNetCore.ConsoleApp
+namespace ACMDotNetCore.ConsoleApp.Services
 {
     internal class ConnectionStrings
     {
         public static SqlConnectionStringBuilder SqlConnectionStringBuilder = new SqlConnectionStringBuilder()
-        { 
-            DataSource=".",
+        {
+            DataSource = ".",
             InitialCatalog = "ACMDotNetDB",
-            UserID="sa",
-            Password= "aya123",
-            TrustServerCertificate=true
+            UserID = "sa",
+            Password = "aya123",
+            TrustServerCertificate = true
         };
 
 

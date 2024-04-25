@@ -6,16 +6,16 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ACMDotNetCore.ConsoleApp
+namespace ACMDotNetCore.ConsoleApp.AdoDotNetExamples
 {
     internal class AdoDotNetExaple
     {
-        private readonly SqlConnectionStringBuilder _sqlConnectionStringBuilder=new SqlConnectionStringBuilder()
+        private readonly SqlConnectionStringBuilder _sqlConnectionStringBuilder = new SqlConnectionStringBuilder()
         {
             DataSource = ".", //server name
             InitialCatalog = "ACMDotNetDB",
             UserID = "sa",
-            Password = "aya123"      
+            Password = "aya123"
         };
         public void Read()
         {
@@ -49,7 +49,7 @@ namespace ACMDotNetCore.ConsoleApp
             }
 
         }
-        public void Create(string title,string author,string content)
+        public void Create(string title, string author, string content)
         {
             SqlConnection connection = new SqlConnection(_sqlConnectionStringBuilder.ConnectionString);
             connection.Open();
@@ -61,18 +61,18 @@ namespace ACMDotNetCore.ConsoleApp
                            (@BlogTitle, 
                            @BlogAuthor,
                            @BlogContent)";
-            SqlCommand cmd = new SqlCommand(query,connection);
+            SqlCommand cmd = new SqlCommand(query, connection);
             cmd.Parameters.AddWithValue("@BlogTitle", title);
             cmd.Parameters.AddWithValue("@BlogAuthor", author);
             cmd.Parameters.AddWithValue("@BlogContent", content);
             int result = cmd.ExecuteNonQuery();
             string message = result > 0 ? "Saving Sucessful" : "Saving Error";
-            Console.WriteLine(message);     
+            Console.WriteLine(message);
             connection.Close();
         }
-        public void Update(int id,string title,string author,string content) 
+        public void Update(int id, string title, string author, string content)
         {
-            SqlConnection connection=new SqlConnection(_sqlConnectionStringBuilder.ConnectionString);
+            SqlConnection connection = new SqlConnection(_sqlConnectionStringBuilder.ConnectionString);
             connection.Open();
             string query = @"UPDATE [dbo].[Tbl_Blog]
                                SET [BlogTitle] = @BlogTitle,
@@ -85,14 +85,14 @@ namespace ACMDotNetCore.ConsoleApp
             cmd.Parameters.AddWithValue("@BlogAuthor", author);
             cmd.Parameters.AddWithValue("@BlogContent", content);
             int result = cmd.ExecuteNonQuery();
-            connection.Close(); 
+            connection.Close();
             string message = result > 0 ? "Update Sucessful" : "Update Error";
             Console.WriteLine(message);
-            
+
         }
         public void Delete(int id)
         {
-            SqlConnection connection=new SqlConnection(_sqlConnectionStringBuilder.ConnectionString); ;
+            SqlConnection connection = new SqlConnection(_sqlConnectionStringBuilder.ConnectionString); ;
             connection.Open();
             string query = @"DELETE FROM [dbo].[Tbl_Blog]
                             WHERE BlogId=@BlogId";
@@ -119,19 +119,19 @@ namespace ACMDotNetCore.ConsoleApp
             connection.Close();
             Console.WriteLine("Connection is close");
 
-            if(dt.Rows.Count == 0)
+            if (dt.Rows.Count == 0)
             {
                 Console.WriteLine("There is  no data record");
                 return;
             }
 
-            DataRow dr = dt.Rows[0];    
+            DataRow dr = dt.Rows[0];
             Console.WriteLine("Blog ID =>" + dr["BlogId"]);
             Console.WriteLine("Blog Title =>" + dr["BlogTitle"]);
             Console.WriteLine("Blog Author =>" + dr["BlogAuthor"]);
             Console.WriteLine("Blog Content =>" + dr["BlogContent"]);
             Console.WriteLine("----------------------------");
-            
+
         }
     }
 }

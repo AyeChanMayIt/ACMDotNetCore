@@ -7,15 +7,15 @@ using System.Text;
 using System.Threading.Tasks;
 
 
-namespace ACMDotNetCore.ConsoleApp;
+namespace ACMDotNetCore.RestApi.Model;
 
 [Table("Tbl_Blog")]  // mapping table 
-public class BlogDto
+public class BlogModel
 {
     [Key] // define pk 
-    public int BlogId { get;set ;}
-   public string BlogTitle { get;set; }
-    public string BlogAuthor { get; set; }
-    public string BlogContent { get; set; }
+    public int BlogId { get; set; }
+    public string? BlogTitle { get; set; }
+    public string? BlogAuthor { get; set; }
+    public string? BlogContent { get; set; }
 
 }
