@@ -14,7 +14,7 @@ namespace ACMDotNetCore.ConsoleApp.Services
             DataSource = ".",
             InitialCatalog = "ACMDotNetDB",
             UserID = "sa",
-            Password = "aya123",
+            Password = "sasa@123",
             TrustServerCertificate = true
         };
 

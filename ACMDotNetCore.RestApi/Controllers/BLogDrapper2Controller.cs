@@ -1,25 +1,32 @@
 ﻿using ACMDotNetCore.ConsoleApp.Services;
 using ACMDotNetCore.RestApi.Db;
 using ACMDotNetCore.RestApi.Model;
+using ACMDotNetCore.Shared;
 using Dapper;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Data;
 using System.Data.SqlClient;
+using System.Diagnostics;
+
 
 namespace ACMDotNetCore.RestApi.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class BLogDrapperController : ControllerBase
+    public class BLogDrapper2Controller : ControllerBase
     {
+        private readonly DapperService _dapperservice=new DapperService(ConnectionStrings.SqlConnectionStringBuilder.ConnectionString);
+
        //Read
         [HttpGet]
         public IActionResult GetBlogs() 
         {
             string query = "select * From Tbl_Blog";
-            using IDbConnection db = new SqlConnection(ConnectionStrings.SqlConnectionStringBuilder.ConnectionString); 
-            List<BlogModel> list= db.Query<BlogModel>(query).ToList();
+            //using IDbConnection db = new SqlConnection(ConnectionStrings.SqlConnectionStringBuilder.ConnectionString);
+            //List<BlogModel> list = db.Query<BlogModel>(query).ToList();
+
+            var list=_dapperservice.Query<BlogModel>(query);
             return Ok(list);
         }
         [HttpGet("{id}")]
@@ -44,10 +51,11 @@ namespace ACMDotNetCore.RestApi.Controllers
                            @BlogAuthor,
                            @BlogContent)";
 
-            using IDbConnection db = new SqlConnection(ConnectionStrings.SqlConnectionStringBuilder.ConnectionString);
-            int reuslt = db.Execute(query, blog);
+            //using IDbConnection db = new SqlConnection(ConnectionStrings.SqlConnectionStringBuilder.ConnectionString);
+            //int reuslt = db.Execute(query, blog);
+            int result=_dapperservice.Execut(query);
 
-            string message = reuslt > 0 ? "Saving Success" : "Saving Fail";
+            string message = result > 0 ? "Saving Success" : "Saving Fail";
             return Ok(message);
         }
         [HttpPut("{id}")]
@@ -65,10 +73,10 @@ namespace ACMDotNetCore.RestApi.Controllers
 	                               [BlogContent] =@BlogContent
                              WHERE BlogId=@BlogId";
 
-            using IDbConnection db = new SqlConnection(ConnectionStrings.SqlConnectionStringBuilder.ConnectionString);
-            int reuslt = db.Execute(query, blog);
-
-            string message = reuslt > 0 ? "Updating Success" : "Updating Fail";
+            //using IDbConnection db = new SqlConnection(ConnectionStrings.SqlConnectionStringBuilder.ConnectionString);
+            //int reuslt = db.Execute(query, blog);
+            int result = _dapperservice.Execut(query,blog);
+            string message = result > 0 ? "Updating Success" : "Updating Fail";
             return Ok(message);
         }
         [HttpPatch("{id}")]
@@ -102,10 +110,10 @@ namespace ACMDotNetCore.RestApi.Controllers
             string query = $@"UPDATE [dbo].[Tbl_Blog]
                              SET {conditions}
                              WHERE BlogId=@BlogId";
-            using IDbConnection db = new SqlConnection(ConnectionStrings.SqlConnectionStringBuilder.ConnectionString);
-            int reuslt = db.Execute(query, blog);
-
-            string message = reuslt > 0 ? "Updating Success" : "Updating Fail";
+            //using IDbConnection db = new SqlConnection(ConnectionStrings.SqlConnectionStringBuilder.ConnectionString);
+            //int reuslt = db.Execute(query, blog);
+            int result = _dapperservice.Execut(query,blog);
+            string message = result > 0 ? "Updating Success" : "Updating Fail";
             return Ok(message);
         }
         [HttpDelete("{id}")]
@@ -118,17 +126,19 @@ namespace ACMDotNetCore.RestApi.Controllers
             }
             string query = @"DELETE FROM [dbo].[Tbl_Blog]
                             WHERE BlogId=@BlogId";
-            using IDbConnection db = new SqlConnection(ConnectionStrings.SqlConnectionStringBuilder.ConnectionString);
-            int reuslt = db.Execute(query, blog);
-            string message = reuslt > 0 ? "Deleting Success" : "Deleting Fail";
+            //using IDbConnection db = new SqlConnection(ConnectionStrings.SqlConnectionStringBuilder.ConnectionString);
+            //int reuslt = db.Execute(query, blog);
+            int result = _dapperservice.Execut(query, blog);
+            string message = result > 0 ? "Deleting Success" : "Deleting Fail";
             return Ok(message);
         }
         
         private BlogModel? FindByID(int id)
         {
             string query = "select * From Tbl_Blog Where BlogId= @Blogid";
-            using IDbConnection db = new SqlConnection(ConnectionStrings.SqlConnectionStringBuilder.ConnectionString);
-            var items = db.Query<BlogModel>(query, new BlogModel { BlogId = id }).FirstOrDefault();
+            //using IDbConnection db = new SqlConnection(ConnectionStrings.SqlConnectionStringBuilder.ConnectionString);
+            //var items = db.Query<BlogModel>(query, new BlogModel { BlogId = id }).FirstOrDefault();
+            var items=_dapperservice.QueryFirstOrDefault<BlogModel>(query, new BlogModel { BlogId = id });
             return items;
         }
     }

@@ -1,4 +1,4 @@
-﻿using ACMDotNetCore.ConsoleApp.Dto;
+﻿using ACMDotNetCore.ConsoleApp.Dtos;
 using Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal;
 using Microsoft.IdentityModel.Tokens;
 using System;

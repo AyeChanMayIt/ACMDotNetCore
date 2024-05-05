@@ -1,4 +1,4 @@
-﻿using ACMDotNetCore.ConsoleApp.Dto;
+﻿using ACMDotNetCore.ConsoleApp.Dtos;
 using ACMDotNetCore.ConsoleApp.Services;
 using Microsoft.EntityFrameworkCore;
 using System;
