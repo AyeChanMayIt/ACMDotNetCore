@@ -16,10 +16,12 @@ namespace ACMDotNetCore.ConsoleAppHttpClientExamples
         public async Task RunAsync()
         {
             // await ReadAsync();
-            await EditAsync(1);
-            await EditAsync(8);
+            // await EditAsync(1);
+            // await EditAsync(8);
+            // await CreateAsync("Title1", "Author1", "Content");
+           await UpdateAsync(3003,"Title1", "Author1", "Content");
         }
-        public async Task ReadAsync()
+        private async Task ReadAsync()
         {
            
             var task = await _client.GetAsync(_blogendpoint);
@@ -37,7 +39,7 @@ namespace ACMDotNetCore.ConsoleAppHttpClientExamples
                 }
             }
         }
-        public async Task EditAsync(int id)
+        private async Task EditAsync(int id)
         {
             var task = await _client.GetAsync($"{_blogendpoint}/{id}");
             if (task.IsSuccessStatusCode)
@@ -56,24 +58,42 @@ namespace ACMDotNetCore.ConsoleAppHttpClientExamples
                 Console.WriteLine(message);
             }
         }
-        public async Task CreatAsync(string title,string author,string content)
+        private async Task CreateAsync(string title,string author,string content)
         {
-            BlogModel blog = new BlogModel() 
+            BlogModel blog = new BlogModel()
             { 
-               BlogTitle = title,
-               BlogAuthor = author,
-               BlogContent= content
+                BlogTitle = title,
+                BlogAuthor = author,
+                BlogContent = content
             };
             string blogJson=JsonConvert.SerializeObject(blog);
-            HttpContent contentJson = new StringContent(blogJson,Encoding.UTF8, Application.Json);
-            var respone = await _client.PostAsync(_blogendpoint, contentJson);
+            HttpContent httpContent = new StringContent(blogJson, Encoding.UTF8, "Application/json");
+            var respone=await _client.PostAsync(_blogendpoint,httpContent);
             if(respone.IsSuccessStatusCode)
             {
                 string message=await respone.Content.ReadAsStringAsync();
                 Console.WriteLine(message);
             }
         }
-        public async Task DeleteAsync(int id)
+        private async Task UpdateAsync(int id,string title,string author,string content)
+        {
+            BlogModel blog = new BlogModel()
+            { 
+                BlogTitle=title,
+                BlogAuthor=author,
+                BlogContent=content
+            };
+            string blogJson= JsonConvert.SerializeObject(blog);
+            HttpContent httpcontent = new StringContent(blogJson, Encoding.UTF8, "Application/Json");
+            var respone= await _client.PutAsync($"{_blogendpoint}/{id}", httpcontent);
+            if(respone.IsSuccessStatusCode)
+            {
+                string message= await respone.Content.ReadAsStringAsync();
+                Console.WriteLine(message);
+            }
+
+        }
+        private async Task DeleteAsync(int id)
         {
             var task = await _client.DeleteAsync($"{_blogendpoint}/{id}");
             if (task.IsSuccessStatusCode)
