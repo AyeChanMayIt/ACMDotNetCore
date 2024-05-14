@@ -21,11 +21,11 @@ namespace ACMDotNetCore.RestAPIWithNLayer.Feacture.PickAPile
             var model= await GetPickAPile();
             return Ok(model.Questions);
         }
-        [HttpGet("{question}/{id}")]
-        public async Task<IActionResult> PickAnw(int question,int id)
+        [HttpGet("{questionId}")]
+        public async Task<IActionResult> PickAnw(int questionId)
         {
             var model = await GetPickAPile();
-            return Ok(model.Answers.FirstOrDefault(x=> x.QuestionId == question && x.AnswerId== id));
+            return Ok(model.Answers.FirstOrDefault(x=> x.QuestionId == questionId));
         }
 
         public class PickAPile
