@@ -8,22 +8,22 @@
         {
             _dablog = new DA_Blog();
         }
-        public List<BlogModel> GetBlogs()
+        public List<BlogModel2> GetBlogs()
         {
             var lst=_dablog.GetBlogs();
             return lst;
         }
-        public BlogModel GetBlog(int id)
+        public BlogModel2 GetBlog(int id)
         {
             var item = _dablog.GetBlog(id);
             return item;
         }
-        public int CreateBlog(BlogModel reqestmodel)
+        public int CreateBlog(BlogModel2 reqestmodel)
         {
             var item = _dablog.CreateBlog(reqestmodel);
             return item;
         }
-        public int UpdateBlog(int id, BlogModel reqestmodel)
+        public int UpdateBlog(int id, BlogModel2 reqestmodel)
         {
             var item=_dablog.UpdateBlog(id, reqestmodel);
             return item;
@@ -53,7 +53,6 @@
         {
             var item=_dablog.DeleteBlog(id); 
             return item;
-
         }
     }
 }

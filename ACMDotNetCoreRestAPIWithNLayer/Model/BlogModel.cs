@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 namespace ACMDotNetCore.RestAPIWithNLayer.Model;
 
 [Table("Tbl_Blog")]  // mapping table 
-public class BlogModel
+public class BlogModel2
 {
     [Key] // define pk 
     public int BlogId { get; set; }

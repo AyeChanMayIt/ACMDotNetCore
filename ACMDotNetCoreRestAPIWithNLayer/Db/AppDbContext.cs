@@ -15,6 +15,6 @@ namespace ACMDotNetCore.RestApi.Db
 
       
 
-        public DbSet<BlogModel> Blogs { get; set; }
+        public DbSet<BlogModel2> Blogs { get; set; }
     }
 }
