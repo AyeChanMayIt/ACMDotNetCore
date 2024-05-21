@@ -2,7 +2,6 @@
 using Dapper;
 using System.Data.SqlClient;
 
-
 namespace ACMDotNetCore.Shared
 {
     public class DapperService
@@ -34,5 +33,6 @@ namespace ACMDotNetCore.Shared
             return result;
         }
 
+        
     }
 }
