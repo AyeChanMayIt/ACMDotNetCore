@@ -9,7 +9,7 @@ namespace ACMDotNetCore.WinForms
 {
     internal class ConnectionStrings
     {
-        public static SqlConnectionStringBuilder SqlConnectionStringBuilder = new SqlConnectionStringBuilder()
+        public static SqlConnectionStringBuilder _sqlConnectionStringBuilder = new SqlConnectionStringBuilder()
         {
             DataSource = ".",
             InitialCatalog = "ACMDotNetDB",

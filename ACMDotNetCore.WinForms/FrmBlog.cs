@@ -1,5 +1,7 @@
-﻿using ACMDotNetCore.RestApi.Model;
-using ACMDotNetCore.Shared;
+﻿using ACMDotNetCore.Shared;
+using ACMDotNetCore.WinForms.Model;
+using ACMDotNetCore.WinForms.Queries;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -14,21 +16,29 @@ namespace ACMDotNetCore.WinForms
 {
     public partial class FrmBlog : Form
     {
+        private readonly DapperService _dapperService;
         public FrmBlog()
         {
             InitializeComponent();
-            DapperService _dapperService = new DapperService(ConnectionStrings.SqlConnectionStringBuilder.ConnectionString);
+            _dapperService = new DapperService(ConnectionStrings._sqlConnectionStringBuilder.ConnectionString);
         }
         private void btnsave_Click(object sender, EventArgs e)
         {
             try
             {
                 BlogModel blog=new BlogModel();
-                blog.BlogTitle= txttitle.Text;
-                blog.BlogAuthor= txtauthor.Text;
-                blog.BlogContent= txtcontent.Text;
-                //_dapperService.Execute();
+                blog.BlogTitle= txttitle.Text.Trim();
+                blog.BlogAuthor= txtauthor.Text.Trim();
+                blog.BlogContent= txtcontent.Text.Trim();
 
+               int result = _dapperService.Execut(BlogQuery.BlogCreate,blog);
+                string message = result > 0 ? "Succuess Create" : "Create Fail";
+                var messaageicon = result > 0 ? MessageBoxIcon.Information  : MessageBoxIcon.Error;
+                MessageBox.Show(message,"Blog",MessageBoxButtons.OK,messaageicon);
+                if(result > 0)
+                {
+                    ClearControl();
+                }             
             }
             catch(Exception ex) 
             {
@@ -37,10 +47,14 @@ namespace ACMDotNetCore.WinForms
         }
         private void btnCancle_Click(object sender, EventArgs e)
         {
+           ClearControl();
+        }
+
+        private void ClearControl()
+        {
             txttitle.Clear();
             txtcontent.Clear();
             txtauthor.Clear();
-
             txttitle.Focus();
         }
     }
