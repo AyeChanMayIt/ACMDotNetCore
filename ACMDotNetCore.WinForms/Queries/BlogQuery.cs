@@ -15,6 +15,12 @@ namespace ACMDotNetCore.WinForms.Queries
                      VALUES
                            (@BlogTitle, 
                            @BlogAuthor,
-                           @BlogContent)";       
+                           @BlogContent)";
+
+        public static string BlogList { get; } = @"SELECT [BlogId]
+                      ,[BlogTitle]
+                      ,[BlogAuthor]
+                      ,[BlogContent]
+                  FROM [dbo].[Tbl_Blog]";
     }
 }
