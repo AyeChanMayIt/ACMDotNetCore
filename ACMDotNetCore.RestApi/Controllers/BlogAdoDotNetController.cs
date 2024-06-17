@@ -13,9 +13,7 @@ namespace ACMDotNetCore.RestApi.Controllers
     [Route("api/[controller]")]
     [ApiController]
     public class BlogAdoDotNetController : ControllerBase
-    {
-        
-       
+    {   
         [HttpGet]
         public IActionResult GetBlog()
         {

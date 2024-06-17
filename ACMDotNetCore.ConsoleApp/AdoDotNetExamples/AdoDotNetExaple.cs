@@ -8,15 +8,22 @@ using System.Threading.Tasks;
 
 namespace ACMDotNetCore.ConsoleApp.AdoDotNetExamples
 {
-    internal class AdoDotNetExaple
+    public class AdoDotNetExaple
     {
-        private readonly SqlConnectionStringBuilder _sqlConnectionStringBuilder = new SqlConnectionStringBuilder()
+        public AdoDotNetExaple(SqlConnectionStringBuilder sqlConnectionStringBuilder)
         {
-            DataSource = ".", //server name
-            InitialCatalog = "ACMDotNetDB",
-            UserID = "sa",
-            Password = "aya123"
-        };
+            SqlConnectionStringBuilder = sqlConnectionStringBuilder;
+        }
+
+        public SqlConnectionStringBuilder SqlConnectionStringBuilder { get; }
+
+        //private readonly SqlConnectionStringBuilder _sqlConnectionStringBuilder = new SqlConnectionStringBuilder()
+        //{
+        //    DataSource = ".", //server name
+        //    InitialCatalog = "ACMDotNetDB",
+        //    UserID = "sa",
+        //    Password = "aya123"
+        //};
         public void Read()
         {
             /*SqlConnectionStringBuilder stringBuilder = new SqlConnectionStringBuilder();
