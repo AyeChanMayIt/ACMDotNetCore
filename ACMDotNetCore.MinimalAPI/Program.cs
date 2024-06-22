@@ -29,6 +29,6 @@ app.UseHttpsRedirection();
 app.MapGet("/",() => "Hello World");
 //BlogService.MapBlgs(app);
 //reverse use this keyword in IEndpoint...//
-app.MapBlgs(); // this are call extension method
+app.MapBlogs(); // this are call extension method
 app.Run();
 

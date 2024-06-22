@@ -41,6 +41,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ACMDotNetCore.NLayer.UI", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ACMDotNetCore.MinimalAPI", "ACMDotNetCore.MinimalAPI\ACMDotNetCore.MinimalAPI.csproj", "{7535F476-4C2B-4653-9418-80A7B842933B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ACMDotNetCore.MVCApps", "ACMDotNetCore.MVCApps\ACMDotNetCore.MVCApps.csproj", "{20A85024-8FE6-4BC4-BDB5-808100C7D409}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -107,6 +109,10 @@ Global
 		{7535F476-4C2B-4653-9418-80A7B842933B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7535F476-4C2B-4653-9418-80A7B842933B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7535F476-4C2B-4653-9418-80A7B842933B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{20A85024-8FE6-4BC4-BDB5-808100C7D409}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{20A85024-8FE6-4BC4-BDB5-808100C7D409}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{20A85024-8FE6-4BC4-BDB5-808100C7D409}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{20A85024-8FE6-4BC4-BDB5-808100C7D409}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

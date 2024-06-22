@@ -10,9 +10,12 @@ namespace ACMDotNetCore.ConsoleApp.AdoDotNetExamples
 {
     public class AdoDotNetExaple
     {
+
+        private readonly SqlConnectionStringBuilder _sqlConnectionStringBuilder;
+
         public AdoDotNetExaple(SqlConnectionStringBuilder sqlConnectionStringBuilder)
         {
-            SqlConnectionStringBuilder = sqlConnectionStringBuilder;
+            _sqlConnectionStringBuilder = sqlConnectionStringBuilder;
         }
 
         public SqlConnectionStringBuilder SqlConnectionStringBuilder { get; }

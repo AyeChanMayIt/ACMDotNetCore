@@ -1,4 +1,4 @@
-﻿using ACMDotNetCore.ConsoleApp.Services;
+﻿
 using ACMDotNetCore.MinimalAPI.Model;
 using Microsoft.EntityFrameworkCore;
 using System;
